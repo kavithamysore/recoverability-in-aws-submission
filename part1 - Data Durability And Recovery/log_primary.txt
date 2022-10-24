@@ -1,0 +1,38 @@
+[ec2-user@ip-10-1-10-47 ~]$ mysql -u admin -p -h primarydatabase.cp4yw7b6ijb1.us-east-1.rds.amazonaws.com
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+
+MySQL [(none)]> use udacity
+Database changed
+MySQL [udacity]> create table Products( productId int, productName varchar(255), procudtDesc varchar(255) );
+Query OK, 0 rows affected (0.06 sec)
+
+
+MySQL [udacity]> insert into Products values (1, "Product 1", "Product 1 Desc");
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> insert into Products values (2, "Product 2", "Product 2 Desc");
+Query OK, 1 row affected (0.00 sec)
+
+MySQL [udacity]> insert into Products values (3, "Product 3", "Product 3 Desc");
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> select * from Products
+    -> ;
++-----------+-------------+----------------+
+| productId | productName | procudtDesc    |
++-----------+-------------+----------------+
+|         1 | Product 1   | Product 1 Desc |
+|         2 | Product 2   | Product 2 Desc |
+|         3 | Product 3   | Product 3 Desc |
++-----------+-------------+----------------+
+3 rows in set (0.00 sec)
+
+MySQL [udacity]> 

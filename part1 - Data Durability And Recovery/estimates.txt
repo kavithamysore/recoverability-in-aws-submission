@@ -1,0 +1,26 @@
+
+Minimum RTO for a single AZ outage
+	In an Amazon RDS Multi-AZ deployment, Amazon RDS automatically creates a primary database (DB) instance and synchronously replicates the data to an instance in a different AZ. When it detects a failure, Amazon RDS automatically fails over to a standby instance without manual intervention. For Multi-AZ with one standby, A new primary is available to serve your new workload in as quickly as 60 seconds. Hence minimum RTO is 60 seconds. 
+
+Minimum RTO for a single region outage
+	Assuming the primary database in the primary region goes down, the minimum RTO is as below
+	00:00 - Problem happens (0 minutes)
+	00:05 - An amount of time passes before an alert triggers (5 minutes)
+	00:06 - Alert triggers on-all staff indicating primary database is down(1 minute)
+	00:16 - On-call staff may need to get out of bed, get to computer, log in, log onto VPN (10 minutes)
+	00:26 - On-call staff starts diagnosing issue and decides to failover to secondary read replica database(10 minutes)
+	00:31 - Stop all applications connecting to primary database(5 minutes)
+	00:46 - Read replica database instance in another region is promoted (15 minutes)
+	01:01 - Remidiation begins to make load balancer changes to divert primary database traffic to secondary database (15 minutes)
+	01:11 - Remediation completed (10 minutes)
+	01:16 - Start back the applications earlier stopped
+	Total time: 1 hour 16 minutes
+
+	An RTO of one hour 20 minutes for this incident would be reasonable.
+
+
+Minimum RPO for a single AZ outage
+	For Multi-AZ with one standby, minimum RPO would be 60 seconds
+
+Minimum RPO for a single region outage
+	Considering the RTO for single region outage, the applications connecting to the primary database are brought down at 31st minute of the incident. If transaction log backups are initiated every 4 hours, the Minimum RPO for a single region outage would be 4 hour and 31 minutes.
