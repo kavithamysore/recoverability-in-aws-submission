@@ -23,4 +23,4 @@ Minimum RPO for a single AZ outage
 	For Multi-AZ with one standby, minimum RPO would be 60 seconds
 
 Minimum RPO for a single region outage
-	Considering the RTO for single region outage, the applications connecting to the primary database are brought down at 31st minute of the incident. If transaction log backups are initiated every 4 hours, the Minimum RPO for a single region outage would be 4 hour and 31 minutes.
+	Considering the RTO for single region outage, the applications connecting to the primary database are brought down at 31st minute of the incident. If transaction log backups are initiated every 5 minutes, the Minimum RPO for a single region outage would be 36 minutes.
